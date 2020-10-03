@@ -48,6 +48,10 @@ public class FileService {
         return allFiles;
     }
 
+    public void deleteFile(int fileID){
+        fileMapper.deleteFile(fileID);
+    }
+
     public int getFilesCount(){
         return fileMapper.getFilesCount();
     }

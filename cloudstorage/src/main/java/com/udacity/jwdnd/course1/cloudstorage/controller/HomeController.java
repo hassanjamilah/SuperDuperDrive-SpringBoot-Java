@@ -8,10 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -19,7 +16,6 @@ import java.io.InputStream;
 import java.util.List;
 
 @Controller
-@RequestMapping("/home")
 public class HomeController {
     FileService fileService;
     UserService userService;
@@ -29,12 +25,27 @@ public class HomeController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/home")
     public String homeView(){
         return "/home";
     }
 
-    @PostMapping
+    @GetMapping("home/deleteFile/{fileID}")
+    public String deleteFile(@PathVariable int fileID, Model model){
+
+        System.out.println("Delete File with id " + fileID);
+        fileService.deleteFile(fileID);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userName = auth.getName();
+        UserModel user = userService.getUserByUserName(userName);
+        List<FileModel> allFiles = fileService.getFilesListByUserID(user.getUserID());
+        if (allFiles.size() >0){
+            model.addAttribute("allFiles" , allFiles);
+        }
+        return "home";
+    }
+
+    @PostMapping("/home")
     public String uploadFile(@RequestParam("fileUpload") MultipartFile file, Model model) throws IOException {
         InputStream inputStream = file.getInputStream();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
