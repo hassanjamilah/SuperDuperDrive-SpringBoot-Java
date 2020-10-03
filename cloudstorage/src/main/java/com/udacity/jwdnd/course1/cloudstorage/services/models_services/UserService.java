@@ -1,14 +1,23 @@
 package com.udacity.jwdnd.course1.cloudstorage.services.models_services;
 
+import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.UserModel;
 import com.udacity.jwdnd.course1.cloudstorage.services.security.HashService;
 import org.springframework.stereotype.Service;
+
+import java.security.SecureRandom;
+import java.util.Base64;
 
 @Service
 public class UserService {
     //TODO: create fields for userMapper and hashMap and create constructor
     private HashService hashService;
+    private UserMapper userMapper;
 
+    public UserService(HashService hashService, UserMapper userMapper) {
+        this.hashService = hashService;
+        this.userMapper = userMapper;
+    }
 
     /**
      * Check if the user name is available
@@ -29,8 +38,15 @@ public class UserService {
      */
     // TODO: hash the password and insert the user
     public int createUser(UserModel user){
-
-        return -1;
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[16];
+        random.nextBytes(salt);
+        String encodedSalt = Base64.getEncoder().encodeToString(salt);
+        String hashedPassword = hashService.getHashedValue(user.getPassword(),encodedSalt);
+        user.setSalt(encodedSalt);
+        user.setPassword(hashedPassword);
+        //Maybe you need to create new user ?
+        return userMapper.insertUser(user);
     }
 
     /**

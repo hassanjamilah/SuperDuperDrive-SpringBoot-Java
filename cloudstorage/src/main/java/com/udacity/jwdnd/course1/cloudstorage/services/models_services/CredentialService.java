@@ -40,6 +40,12 @@ public class CredentialService {
         return null;
     }
 
+    
+    // // TODO: 03/10/2020 Complete the method get the credential and put it in the model and return it 
+    public CredentialModel getCredentialByID(int credID){
+        return null;
+    } 
+    
     /**
      * Encrypt the password of the credentials
      * @param password the text password
