@@ -14,19 +14,20 @@ public class FileModel {
         foreign key (userid) references USERS(userid)
      */
 
-    private int fileID;
+    private Integer fileID;
     private String fileName;
     private String contentType;
     private String fileSize;
     private int userID;
     private InputStream fileData;
 
-    public FileModel(int fileID, String fileName, String contentType, String fileSize, int userID) {
+    public FileModel(Integer fileID, String fileName, String contentType, String fileSize, int userID, InputStream fileContens) {
         this.fileID = fileID;
         this.fileName = fileName;
         this.contentType = contentType;
         this.fileSize = fileSize;
         this.userID = userID;
+        this.fileData = fileContens;
     }
 
     public int getFileID() {
@@ -75,5 +76,17 @@ public class FileModel {
 
     public void setFileData(InputStream fileData) {
         this.fileData = fileData;
+    }
+
+    @Override
+    public String toString() {
+        return "FileModel{" +
+                "fileID=" + fileID +
+                ", fileName='" + fileName + '\'' +
+                ", contentType='" + contentType + '\'' +
+                ", fileSize='" + fileSize + '\'' +
+                ", userID=" + userID +
+                ", fileData=" + fileData +
+                '}';
     }
 }

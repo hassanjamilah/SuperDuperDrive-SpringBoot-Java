@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+@Mapper
 public interface FileMapper {
     static String TABLE_FILE_NAME = "FILES";
     static String COL_FILEID_NAME = "fileId";
@@ -49,4 +50,11 @@ public interface FileMapper {
                   " where fileid = oldFileID"
     )
     void updateFile(int oldFileID, FileModel newFile);
+
+
+    @Select("select count(fileid) from " + TABLE_FILE_NAME)
+    int getFilesCount();
+
+    @Select("select * from " + TABLE_FILE_NAME)
+    List<FileModel> getAllFiles();
 }
