@@ -10,7 +10,7 @@ import java.util.Base64;
 
 @Service
 public class UserService {
-    //TODO: create fields for userMapper and hashMap and create constructor
+    //TODO1: create fields for userMapper and hashMap and create constructor
     private HashService hashService;
     private UserMapper userMapper;
 
@@ -26,7 +26,7 @@ public class UserService {
      * if the user name is not exist will return true so the user can use it
      */
     public boolean isUserNameAvailable(String userName){
-        //TODO: check if the user name exist or not
+        //TODO1: check if the user name exist or not
         UserModel user = userMapper.getUserByUserName(userName);
         if (user == null){
             return true;
@@ -40,7 +40,7 @@ public class UserService {
      * @return the id of the inserted user
      * on Fail will return -1
      */
-    // TODO: hash the password and insert the user
+    // TODO1: hash the password and insert the user
     public int createUser(UserModel user){
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
@@ -49,7 +49,6 @@ public class UserService {
         String hashedPassword = hashService.getHashedValue(user.getPassword(),encodedSalt);
         user.setSalt(encodedSalt);
         user.setPassword(hashedPassword);
-        //Maybe you need to create new user ?
         return userMapper.insertUser(new UserModel(null,user.getUserName(),encodedSalt, hashedPassword,user.getFirstName(), user.getLastName()));
     }
 
@@ -58,9 +57,10 @@ public class UserService {
      * @param userName the userName to find in the database
      * @return User model contains the data of the user
      */
-    // TODO: Get the user and return the user model
+    // TODO1: Get the user and return the user model
     public UserModel getUserByUserName (String userName){
-        return null;
+        UserModel user = userMapper.getUserByUserName(userName);
+        return user;
     }
 
     /**
@@ -68,8 +68,9 @@ public class UserService {
      * @param userID the user id to search for in the database
      * @return User model contains the user data
      */
-    // TODO: Get the user and return the user model
+    // TODO1: Get the user and return the user model
     public UserModel getUserByID (int userID){
+        UserModel user = userMapper.getUserByID(userID);
         return null;
     }
 
