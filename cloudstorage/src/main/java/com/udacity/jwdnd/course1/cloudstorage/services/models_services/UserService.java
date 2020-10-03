@@ -27,6 +27,10 @@ public class UserService {
      */
     public boolean isUserNameAvailable(String userName){
         //TODO: check if the user name exist or not
+        UserModel user = userMapper.getUserByUserName(userName);
+        if (user == null){
+            return true;
+        }
         return false;
     }
 
@@ -46,7 +50,7 @@ public class UserService {
         user.setSalt(encodedSalt);
         user.setPassword(hashedPassword);
         //Maybe you need to create new user ?
-        return userMapper.insertUser(user);
+        return userMapper.insertUser(new UserModel(null,user.getUserName(),encodedSalt, hashedPassword,user.getFirstName(), user.getLastName()));
     }
 
     /**

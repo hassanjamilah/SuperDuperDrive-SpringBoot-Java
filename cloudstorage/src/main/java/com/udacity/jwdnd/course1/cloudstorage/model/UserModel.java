@@ -11,18 +11,18 @@ public class UserModel {
           lastname VARCHAR(20)
      */
 
-    private int userID;
+    private Integer userID;
     private String userName;
     private String salt;
     private String password;
     private String firstName;
     private String lastName;
 
-    public int getUserID() {
+    public Integer getUserID() {
         return userID;
     }
 
-    public UserModel(int userID, String userName, String salt, String password, String firstName, String lastName) {
+    public UserModel(Integer userID, String userName, String salt, String password, String firstName, String lastName) {
         this.userID = userID;
         this.userName = userName;
         this.salt = salt;
@@ -31,7 +31,7 @@ public class UserModel {
         this.lastName = lastName;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(Integer userID) {
         this.userID = userID;
     }
 

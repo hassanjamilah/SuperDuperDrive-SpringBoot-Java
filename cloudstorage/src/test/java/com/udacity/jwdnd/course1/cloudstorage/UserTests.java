@@ -25,25 +25,25 @@ public class UserTests {
 
     @Test
     void insertUser(){
-        userService = new UserService(new HashService(), new UserMapper() {
-            @Override
-            public int insertUser(UserModel user) {
-                return 0;
-            }
-
-            @Override
-            public UserModel getUserByID(int userID) {
-                return null;
-            }
-
-            @Override
-            public int getUsersCount() {
-                return 0;
-            }
-        });
-        UserModel user = new UserModel(0,"hassanjamila","","123456","Hassan", "Jamila");
-        int id = userService.createUser(user);
-        System.out.println("The inserted user id is: " + id);
+//        userService = new UserService(new HashService(), new UserMapper() {
+//            @Override
+//            public int insertUser(UserModel user) {
+//                return 0;
+//            }
+//
+//            @Override
+//            public UserModel getUserByID(int userID) {
+//                return null;
+//            }
+//
+//            @Override
+//            public int getUsersCount() {
+//                return 0;
+//            }
+//        });
+//        UserModel user = new UserModel(0,"hassanjamila","","123456","Hassan", "Jamila");
+//        int id = userService.createUser(user);
+//        System.out.println("The inserted user id is: " + id);
     }
 
     @Test
