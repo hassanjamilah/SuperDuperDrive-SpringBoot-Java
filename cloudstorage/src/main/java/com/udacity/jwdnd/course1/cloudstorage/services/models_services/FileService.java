@@ -48,6 +48,11 @@ public class FileService {
         return allFiles;
     }
 
+    public FileModel getFileByID(int fileID){
+        FileModel file = fileMapper.getFileByFileID(fileID);
+        return file;
+    }
+
     public void deleteFile(int fileID){
         fileMapper.deleteFile(fileID);
     }

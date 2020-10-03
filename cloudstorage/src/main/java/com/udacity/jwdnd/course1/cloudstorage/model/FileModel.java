@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.model;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 public class FileModel {
@@ -19,9 +20,9 @@ public class FileModel {
     private String contentType;
     private String fileSize;
     private int userID;
-    private InputStream fileData;
+    private byte[] fileData;
 
-    public FileModel(Integer fileID, String fileName, String contentType, String fileSize, int userID, InputStream fileContens) {
+    public FileModel(Integer fileID, String fileName, String contentType, String fileSize, int userID, byte[] fileContens) {
         this.fileID = fileID;
         this.fileName = fileName;
         this.contentType = contentType;
@@ -70,23 +71,26 @@ public class FileModel {
         this.userID = userID;
     }
 
-    public InputStream getFileData() {
+    public byte[] getFileData() {
         return fileData;
     }
 
-    public void setFileData(InputStream fileData) {
+    public void setFileData(byte[] fileData) {
         this.fileData = fileData;
     }
 
     @Override
     public String toString() {
-        return "FileModel{" +
-                "fileID=" + fileID +
-                ", fileName='" + fileName + '\'' +
-                ", contentType='" + contentType + '\'' +
-                ", fileSize='" + fileSize + '\'' +
-                ", userID=" + userID +
-                ", fileData=" + fileData +
-                '}';
+
+            return "FileModel{" +
+                    "fileID=" + fileID +
+                    ", fileName='" + fileName + '\'' +
+                    ", contentType='" + contentType + '\'' +
+                    ", fileSize='" + fileSize + '\'' +
+                    ", userID=" + userID +
+                    ", fileData=" + fileData +
+                    ", fileDataSize=" + fileData.length +
+                    '}';
+
     }
 }
