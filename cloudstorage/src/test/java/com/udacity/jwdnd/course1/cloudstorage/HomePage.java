@@ -38,6 +38,28 @@ public class HomePage {
     @FindBy(id = "closeNote")
     private WebElement closeNote;
 
+    @FindBy(id = "nav-credentials-tab")
+    private WebElement credTab;
+
+    @FindBy(id = "addCredButton")
+    private WebElement addCredButton;
+
+    @FindBy(id = "credential-url")
+    private WebElement credURL;
+
+    @FindBy(id = "credential-username")
+    private WebElement credUserName;
+
+    @FindBy(id = "credential-password")
+    private WebElement credPassword;
+
+    @FindBy(id = "editCred")
+    private WebElement editCred;
+
+
+    @FindBy(id = "deleteCred")
+    private WebElement deleteCred;
+
     private WebDriverWait wait;
     private JavascriptExecutor js;
     WebDriver driver ;
@@ -107,6 +129,44 @@ public class HomePage {
         return input.getAttribute("value");
     }
 
+
+    public void selectCredTab(){
+        js.executeScript("arguments[0].click()", credTab);
+    }
+
+    public void clickAddCredButton(){
+        js.executeScript("arguments[0].click()", addCredButton);
+    }
+
+    public void sendCredDataAndSubmit(String url, String userName, String password){
+        credURL.sendKeys(url);
+        credUserName.sendKeys(userName);
+        credPassword.sendKeys(password);
+        credPassword.submit();
+    }
+
+    public void clickEditCredButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(editCred)).click();
+        js.executeScript("arguments[0].click()" , editCred);
+    }
+
+    public void editCred(){
+        wait.until(ExpectedConditions.visibilityOf(credURL)).sendKeys("1");
+    }
+
+    public String getURL(){
+         wait.until(ExpectedConditions.visibilityOf(credURL)).getText();
+        return credURL.getAttribute("value");
+    }
+
+    public void clickDeleteCred(){
+        wait.until(ExpectedConditions.elementToBeClickable(deleteCred));
+        js.executeScript("arguments[0].click()" , deleteCred);
+    }
+
+    public void checkIfEditCredButtonExist(){
+        wait.until(ExpectedConditions.visibilityOf(editCred));
+    }
 
 
 

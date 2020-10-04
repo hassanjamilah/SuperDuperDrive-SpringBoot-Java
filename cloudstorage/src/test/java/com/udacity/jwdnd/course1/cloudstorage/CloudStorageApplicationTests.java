@@ -46,14 +46,7 @@ class CloudStorageApplicationTests {
 		}
 	}
 
-	@Test
-	public void testSignupSuccess(){
-		driver.get("http://localhost:" + this.port + "/signup");
-		signupPage.sendData();
-		signupPage.submit();
-		System.out.println(signupPage.getSuccessMessage());
-		Assertions.assertEquals("You successfully signed up! Please continue to the login page.",signupPage.getSuccessMessage());
-	}
+
 
 	@Test
 	public void testSignUpFail(){
@@ -105,8 +98,72 @@ class CloudStorageApplicationTests {
 		Thread.sleep(1000);
 	}
 
+	@Test
+	public void testInserCred() throws InterruptedException {
+		gotoPage("signup");
+		signupPage.sendData("h1", "123456" , "hassan " , "jamila");
+		signupPage.submit();
+		gotoPage("login");
+		loginPage.sendData("h1" , "123456");
+		loginPage.submitLogin();
+		homePage = new HomePage(driver);
+		String url = "https://www.google.com";
+		String userName = "Hassan";
+		String password = "123456";
+		homePage.selectCredTab();
+		homePage.clickAddCredButton();
+		Thread.sleep(1000);
+		homePage.sendCredDataAndSubmit(url, userName, password);
+		homePage.clickEditCredButton();
+		String insertedURL =  homePage.getURL();
+		Assertions.assertEquals(insertedURL, url);
+	}
 
+	@Test
+	public void testEditCred() throws InterruptedException {
+		gotoPage("signup");
+		signupPage.sendData("h1", "123456" , "hassan " , "jamila");
+		signupPage.submit();
+		gotoPage("login");
+		loginPage.sendData("h1" , "123456");
+		loginPage.submitLogin();
+		homePage = new HomePage(driver);
+		String url = "https://www.google.com";
+		String userName = "Hassan";
+		String password = "123456";
+		homePage.selectCredTab();
+		homePage.clickAddCredButton();
+		Thread.sleep(1000);
+		homePage.sendCredDataAndSubmit(url, userName, password);
+		homePage.clickEditCredButton();
+		homePage.editCred();
+		String editedUrl = homePage.getURL();
+		Assertions.assertEquals(editedUrl , url+"1");
+	}
 
+	@Test
+	public void testDeleteCred() throws InterruptedException {
+		gotoPage("signup");
+		signupPage.sendData("h1", "123456" , "hassan " , "jamila");
+		signupPage.submit();
+		gotoPage("login");
+		loginPage.sendData("h1" , "123456");
+		loginPage.submitLogin();
+		homePage = new HomePage(driver);
+		String url = "https://www.google.com";
+		String userName = "Hassan";
+		String password = "123456";
+		homePage.selectCredTab();
+		homePage.clickAddCredButton();
+		Thread.sleep(1000);
+		homePage.sendCredDataAndSubmit(url, userName, password);
+		homePage.clickDeleteCred();
+		Assertions.assertThrows(org.openqa.selenium.TimeoutException.class, ()->{
+			homePage.checkIfEditCredButtonExist();
+		});
+		Thread.sleep(2000);
+
+	}
 
 	@Test
 	public void getLoginPage() {

@@ -54,8 +54,21 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
-  <component name="RunManager" selected="JUnit.CloudStorageApplicationTests.testSuccessLoginAndCreateDeleteNote">
-    <configuration name="CloudStorageApplicationTests.signUpFailTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.CloudStorageApplication">
+    <configuration name="CloudStorageApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplication" />
+      <module name="cloudstorage" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.udacity.jwdnd.course1.cloudstorage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CloudStorageApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cloudstorage" />
       <extension name="coverage">
         <pattern>
@@ -65,13 +78,28 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.udacity.jwdnd.course1.cloudstorage" />
       <option name="MAIN_CLASS_NAME" value="com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests" />
-      <option name="METHOD_NAME" value="signUpFailTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CloudStorageApplicationTests.testDeleteCred" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cloudstorage" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.udacity.jwdnd.course1.cloudstorage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.udacity.jwdnd.course1.cloudstorage" />
+      <option name="MAIN_CLASS_NAME" value="com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests" />
+      <option name="METHOD_NAME" value="testDeleteCred" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CloudStorageApplicationTests.signupTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CloudStorageApplicationTests.testEditCred" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cloudstorage" />
       <extension name="coverage">
         <pattern>
@@ -81,13 +109,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.udacity.jwdnd.course1.cloudstorage" />
       <option name="MAIN_CLASS_NAME" value="com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests" />
-      <option name="METHOD_NAME" value="signupTest" />
+      <option name="METHOD_NAME" value="testEditCred" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CloudStorageApplicationTests.testSuccessLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CloudStorageApplicationTests.testSignupSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cloudstorage" />
       <extension name="coverage">
         <pattern>
@@ -97,39 +125,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.udacity.jwdnd.course1.cloudstorage" />
       <option name="MAIN_CLASS_NAME" value="com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests" />
-      <option name="METHOD_NAME" value="testSuccessLogin" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CloudStorageApplicationTests.testSuccessLoginAndCreateDeleteNote" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="cloudstorage" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.udacity.jwdnd.course1.cloudstorage.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.udacity.jwdnd.course1.cloudstorage" />
-      <option name="MAIN_CLASS_NAME" value="com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests" />
-      <option name="METHOD_NAME" value="testSuccessLoginAndCreateDeleteNote" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CloudStorageApplicationTests.testSuccessLoginAndCreateEditNote" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="cloudstorage" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.udacity.jwdnd.course1.cloudstorage.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.udacity.jwdnd.course1.cloudstorage" />
-      <option name="MAIN_CLASS_NAME" value="com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests" />
-      <option name="METHOD_NAME" value="testSuccessLoginAndCreateEditNote" />
+      <option name="METHOD_NAME" value="testSignupSuccess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -137,11 +133,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CloudStorageApplicationTests.testSuccessLoginAndCreateDeleteNote" />
-        <item itemvalue="JUnit.CloudStorageApplicationTests.testSuccessLoginAndCreateEditNote" />
-        <item itemvalue="JUnit.CloudStorageApplicationTests.testSuccessLogin" />
-        <item itemvalue="JUnit.CloudStorageApplicationTests.signUpFailTest" />
-        <item itemvalue="JUnit.CloudStorageApplicationTests.signupTest" />
+        <item itemvalue="Application.CloudStorageApplication" />
+        <item itemvalue="JUnit.CloudStorageApplicationTests.testSignupSuccess" />
+        <item itemvalue="JUnit.CloudStorageApplicationTests" />
+        <item itemvalue="JUnit.CloudStorageApplicationTests.testDeleteCred" />
+        <item itemvalue="JUnit.CloudStorageApplicationTests.testEditCred" />
       </list>
     </recent_temporary>
   </component>
@@ -184,22 +180,22 @@
       <screen x="0" y="23" width="1280" height="728" />
     </state>
     <state width="451" height="438" key="DebuggerActiveHint/0.23.1280.728@0.23.1280.728" timestamp="1601791604721" />
-    <state width="1238" height="59" key="GridCell.Tab.0.bottom" timestamp="1601808765062">
+    <state width="1238" height="203" key="GridCell.Tab.0.bottom" timestamp="1601811092807">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="59" key="GridCell.Tab.0.bottom/0.23.1280.728@0.23.1280.728" timestamp="1601808765062" />
-    <state width="1238" height="59" key="GridCell.Tab.0.center" timestamp="1601808765061">
+    <state width="1238" height="203" key="GridCell.Tab.0.bottom/0.23.1280.728@0.23.1280.728" timestamp="1601811092807" />
+    <state width="1238" height="203" key="GridCell.Tab.0.center" timestamp="1601811092805">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="59" key="GridCell.Tab.0.center/0.23.1280.728@0.23.1280.728" timestamp="1601808765061" />
-    <state width="1238" height="59" key="GridCell.Tab.0.left" timestamp="1601808765060">
+    <state width="1238" height="203" key="GridCell.Tab.0.center/0.23.1280.728@0.23.1280.728" timestamp="1601811092805" />
+    <state width="1238" height="203" key="GridCell.Tab.0.left" timestamp="1601811092805">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="59" key="GridCell.Tab.0.left/0.23.1280.728@0.23.1280.728" timestamp="1601808765060" />
-    <state width="1238" height="59" key="GridCell.Tab.0.right" timestamp="1601808765061">
+    <state width="1238" height="203" key="GridCell.Tab.0.left/0.23.1280.728@0.23.1280.728" timestamp="1601811092805" />
+    <state width="1238" height="203" key="GridCell.Tab.0.right" timestamp="1601811092806">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="59" key="GridCell.Tab.0.right/0.23.1280.728@0.23.1280.728" timestamp="1601808765061" />
+    <state width="1238" height="203" key="GridCell.Tab.0.right/0.23.1280.728@0.23.1280.728" timestamp="1601811092806" />
     <state width="1238" height="137" key="GridCell.Tab.1.bottom" timestamp="1601807966970">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
