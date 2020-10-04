@@ -102,10 +102,11 @@ public class HomeController {
     }
 
     @PostMapping("/home/createNote")
-    public String insertNewNote(@ModelAttribute NoteModel noteModel,Authentication auth, Model model){
+    public String insertNewNote(@RequestParam("noteID1") String id1, @ModelAttribute NoteModel noteModel,Authentication auth, Model model){
         String userName = auth.getName();
+        System.out.println("The id 1 is : " + id1);
         UserModel user = userService.getUserByUserName(userName);
-        //TODO: change to oringina user id
+        System.out.println("The create note model is: " + noteModel.toString());
         int userID = getUserID();
         noteModel.setUserID(userID);
         int id = noteService.createNote(noteModel);
