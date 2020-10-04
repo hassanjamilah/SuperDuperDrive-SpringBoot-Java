@@ -1,8 +1,10 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 import com.udacity.jwdnd.course1.cloudstorage.model.FileModel;
+import com.udacity.jwdnd.course1.cloudstorage.model.NoteModel;
 import com.udacity.jwdnd.course1.cloudstorage.model.UserModel;
 import com.udacity.jwdnd.course1.cloudstorage.services.models_services.FileService;
+import com.udacity.jwdnd.course1.cloudstorage.services.models_services.NoteService;
 import com.udacity.jwdnd.course1.cloudstorage.services.models_services.UserService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.core.io.ByteArrayResource;
@@ -27,10 +29,12 @@ import java.util.List;
 public class HomeController {
     FileService fileService;
     UserService userService;
+    NoteService noteService;
 
-    public HomeController(FileService fileService, UserService userService) {
+    public HomeController(FileService fileService, UserService userService, NoteService noteService) {
         this.fileService = fileService;
         this.userService = userService;
+        this.noteService = noteService;
     }
 
     @GetMapping("/home")
@@ -76,6 +80,29 @@ public class HomeController {
         List<FileModel> allFiles = fileService.getFilesListByUserID(user.getUserID());
         if (allFiles.size() >0){
             model.addAttribute("allFiles" , allFiles);
+        }
+        return "home";
+    }
+
+    @PostMapping("/home/createNote")
+    public String insertNewNote(@ModelAttribute NoteModel noteModel,Authentication auth, Model model){
+        String userName = auth.getName();
+        UserModel user = userService.getUserByUserName(userName);
+        //TODO: change to oringina user id
+        int userID = 1;
+        noteModel.setUserID(1);
+        int id = noteService.createNote(noteModel);
+        System.out.println("The inserted Note ID is: " + id);
+        if (id > 0 ){
+            List<NoteModel> allNotes = noteService.getNotesByUserID(userID);
+            System.out.println("The notes count is: " + noteService.getNotesCount());
+            for (NoteModel note:
+                 allNotes) {
+                System.out.println(note.toString());
+
+            }
+            model.addAttribute("allNotes", allNotes );
+            model.addAttribute("selectedTab" , "note");
         }
         return "home";
     }

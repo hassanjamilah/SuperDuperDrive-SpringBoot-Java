@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface NoteMapper {
     static String TABLE_NOTES_NAME = "NOTES";
-    static String COL_TITLE_NAME = "title";
+    static String COL_TITLE_NAME = "notetitle";
     static String COL_DESCRIPTION_NAME = "notedescription";
     static String COL_USERID_NAME = "userid";
 
@@ -16,7 +16,7 @@ public interface NoteMapper {
     @Insert("insert into " + TABLE_NOTES_NAME +
             "( " + COL_TITLE_NAME + " , " + COL_DESCRIPTION_NAME + " , " + COL_USERID_NAME +
              " ) VALUES (" +
-             "#{noteTitle} , #{noteDescription}, #{userID}"
+             "#{noteTitle} , #{noteDescription}, #{userID})"
     )
     @Options(useGeneratedKeys = true, keyProperty = "noteID")
     int createNote(NoteModel note);
@@ -46,5 +46,9 @@ public interface NoteMapper {
             " where noteid = #{oldNoteID}"
     )
     void updateNote(int oldNoteID, NoteModel newNote);
+
+    @Select("SELECT count(noteID) FROM " + TABLE_NOTES_NAME)
+    int getNotesCount();
+
 
 }

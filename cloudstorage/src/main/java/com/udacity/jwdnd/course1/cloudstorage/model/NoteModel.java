@@ -9,12 +9,12 @@ public class NoteModel {
         userid INT,
         foreign key (userid) references USERS(userid)
      */
-    private int noteID;
+    private Integer noteID;
     private String noteTitle;
     private String noteDescription;
-    private int userID;
+    private Integer userID;
 
-    public NoteModel(int noteID, String noteTitle, String noteDescription, int userID) {
+    public NoteModel(Integer noteID, String noteTitle, String noteDescription, Integer userID) {
         this.noteID = noteID;
         this.noteTitle = noteTitle;
         this.noteDescription = noteDescription;
@@ -51,5 +51,15 @@ public class NoteModel {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    @Override
+    public String toString() {
+        return "NoteModel{" +
+                "noteID=" + noteID +
+                ", noteTitle='" + noteTitle + '\'' +
+                ", noteDescription='" + noteDescription + '\'' +
+                ", userID=" + userID +
+                '}';
     }
 }
