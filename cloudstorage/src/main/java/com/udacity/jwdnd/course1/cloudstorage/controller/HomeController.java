@@ -33,6 +33,7 @@ public class HomeController {
     UserService userService;
     NoteService noteService;
     CredentialService credService;
+    String selectedTab = null;
 
     public HomeController(FileService fileService, UserService userService, NoteService noteService, CredentialService credService) {
         this.fileService = fileService;
@@ -42,7 +43,10 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String homeView(){
+    public String homeView(Model model){
+        if (selectedTab == null){
+            model.addAttribute("selectedTab" , "file");
+        }
         return "/home";
     }
 
@@ -86,6 +90,7 @@ public class HomeController {
         }
         model.addAttribute("allNotes", allNotes );
         model.addAttribute("selectedTab" , "note");
+        selectedTab = "note";
         return "home";
     }
 
@@ -100,6 +105,7 @@ public class HomeController {
             }
             model.addAttribute("allCreds" , allCreds);
             model.addAttribute("selectedTab", "cred");
+            selectedTab = "cred";
         return "home";
     }
 
@@ -115,6 +121,8 @@ public class HomeController {
         List<FileModel> allFiles = fileService.getFilesListByUserID(user.getUserID());
         if (allFiles.size() >0){
             model.addAttribute("allFiles" , allFiles);
+            model.addAttribute("selectedTab", "file");
+            selectedTab = "file";
         }
         return "home";
     }
@@ -153,6 +161,7 @@ public class HomeController {
             }
             model.addAttribute("allNotes", allNotes );
             model.addAttribute("selectedTab" , "note");
+            selectedTab = "note";
         }
         return "home";
     }
@@ -182,6 +191,7 @@ public class HomeController {
             }
             model.addAttribute("allCreds" , allCreds);
             model.addAttribute("selectedTab", "cred");
+            selectedTab = "cred";
         }
         return "home";
 
