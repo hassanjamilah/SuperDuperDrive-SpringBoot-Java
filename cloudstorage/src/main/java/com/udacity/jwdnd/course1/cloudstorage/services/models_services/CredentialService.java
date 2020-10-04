@@ -72,4 +72,8 @@ public class CredentialService {
     public String decryptPassword(String key, String encryptedPassword){
         return encryptionService.decryptValue(encryptedPassword,key);
     }
+
+    public void deleteCredentials(int credID){
+        credMapper.deleteCredential(credID);
+    }
 }

@@ -89,6 +89,20 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/home/deleteCredential/{credID}")
+    public String deleteCredential(@PathVariable int credID, Model model){
+        System.out.print("Delete Credential with ID: " + credID);
+        credService.deleteCredentials(credID);
+            List<CredentialModel> allCreds = credService.getCredentialsByUserID(getUserID());
+            for (CredentialModel cred:
+                    allCreds) {
+                System.out.println(cred.toString());
+            }
+            model.addAttribute("allCreds" , allCreds);
+            model.addAttribute("selectedTab", "cred");
+        return "home";
+    }
+
     @PostMapping("/home")
     public String uploadFile(@RequestParam("fileUpload") MultipartFile file, Model model) throws IOException {
         InputStream inputStream = file.getInputStream();
