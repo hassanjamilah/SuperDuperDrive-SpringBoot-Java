@@ -68,6 +68,23 @@ public class HomeController {
                 .body(new ByteArrayResource(file.getFileData()));
     }
 
+    @GetMapping("/home/deleteNote/{noteID}")
+    public String deleteNote(@PathVariable int noteID, Model model){
+        System.out.println("Delete the note: " + noteID);
+        noteService.deleteNote(noteID);
+        int userID = getUserID();
+        List<NoteModel> allNotes = noteService.getNotesByUserID(userID);
+        System.out.println("The notes count is: " + noteService.getNotesCount());
+        for (NoteModel note:
+                allNotes) {
+            System.out.println(note.toString());
+
+        }
+        model.addAttribute("allNotes", allNotes );
+        model.addAttribute("selectedTab" , "note");
+        return "home";
+    }
+
     @PostMapping("/home")
     public String uploadFile(@RequestParam("fileUpload") MultipartFile file, Model model) throws IOException {
         InputStream inputStream = file.getInputStream();
@@ -89,8 +106,8 @@ public class HomeController {
         String userName = auth.getName();
         UserModel user = userService.getUserByUserName(userName);
         //TODO: change to oringina user id
-        int userID = 1;
-        noteModel.setUserID(1);
+        int userID = getUserID();
+        noteModel.setUserID(userID);
         int id = noteService.createNote(noteModel);
         System.out.println("The inserted Note ID is: " + id);
         if (id > 0 ){
@@ -105,5 +122,13 @@ public class HomeController {
             model.addAttribute("selectedTab" , "note");
         }
         return "home";
+    }
+
+
+    public int getUserID(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userName = auth.getName();
+        UserModel user = userService.getUserByUserName(userName);
+        return user.getUserID();
     }
 }

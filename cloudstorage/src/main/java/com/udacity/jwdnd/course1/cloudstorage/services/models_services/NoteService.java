@@ -66,6 +66,10 @@ public class NoteService {
     }
 
 
+    public void deleteNote(int noteID){
+        noteMapper.deleteNote(noteID);
+    }
+
     public int getNotesCount(){
         return noteMapper.getNotesCount();
     }
