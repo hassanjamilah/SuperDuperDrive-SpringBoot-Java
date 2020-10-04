@@ -105,11 +105,25 @@ public class HomeController {
     public String insertNewNote(@RequestParam("noteID1") String id1, @ModelAttribute NoteModel noteModel,Authentication auth, Model model){
         String userName = auth.getName();
         System.out.println("The id 1 is : " + id1);
+        if (id1.length() == 0){
+            id1 = "0";
+        };
+        int editNoteID = Integer.parseInt(id1);
+        NoteModel editNote = noteService.getNoteByNoteID(editNoteID);
         UserModel user = userService.getUserByUserName(userName);
         System.out.println("The create note model is: " + noteModel.toString());
         int userID = getUserID();
         noteModel.setUserID(userID);
-        int id = noteService.createNote(noteModel);
+        int id = 0;
+        if (editNote == null){
+            System.out.println("Create new note");
+             id = noteService.createNote(noteModel);
+        }else {
+            System.out.println("Edit note : " + editNoteID);
+            noteService.editNote(editNoteID, noteModel);
+            id = 1 ;
+        }
+
         System.out.println("The inserted Note ID is: " + id);
         if (id > 0 ){
             List<NoteModel> allNotes = noteService.getNotesByUserID(userID);

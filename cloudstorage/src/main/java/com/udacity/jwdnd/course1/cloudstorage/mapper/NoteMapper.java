@@ -41,8 +41,8 @@ public interface NoteMapper {
 
     //Update
     @Update("update "  + TABLE_NOTES_NAME +
-        " set " + COL_DESCRIPTION_NAME + " = #{noteDescriptione}," +
-            COL_TITLE_NAME + " = #{noteTitle}" +
+        " set " + COL_DESCRIPTION_NAME + " = #{newNote.noteDescription}," +
+            COL_TITLE_NAME + " = #{newNote.noteTitle}" +
             " where noteid = #{oldNoteID}"
     )
     void updateNote(int oldNoteID, NoteModel newNote);

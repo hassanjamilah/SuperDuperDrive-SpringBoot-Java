@@ -44,11 +44,10 @@ public class NoteService {
     /**
      * Get a specified note depening on its id
      * @param noteID the id of the note
-     * @param userID the id of the user
      * @return a note model
      */
     // TODO1: 30/09/2020 Get the note and store it in the model an return it
-    public NoteModel getNoteByNoteID (int noteID, int userID){
+    public NoteModel getNoteByNoteID (int noteID){
         NoteModel note = noteMapper.getNoteByNoteID(noteID);
         return note;
     }
@@ -68,6 +67,10 @@ public class NoteService {
 
     public void deleteNote(int noteID){
         noteMapper.deleteNote(noteID);
+    }
+
+    public void editNote(int noteID, NoteModel newNote){
+        noteMapper.updateNote(noteID, newNote);
     }
 
     public int getNotesCount(){

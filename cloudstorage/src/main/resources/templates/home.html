@@ -109,8 +109,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <form action="#" th:action="@{/home/createNote}" method="POST">
-                                            <div>Hello</div>
-                                            <input type="text" name="noteID1" id="note-id">
+                                            <input type="hidden" name="noteID1" id="note-id">
                                             <div class="form-group">
                                                 <label for="note-title" class="col-form-label">Title</label>
                                                 <input type="text" name= "noteTitle" class="form-control" id="note-title" maxlength="20" required>
