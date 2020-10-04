@@ -147,7 +147,9 @@
                                 <tbody>
                                 <tr th:each="cred:${allCreds}">
                                     <td>
-                                        <button type="button" class="btn btn-success">Edit</button>
+                                        <button type="button" class="btn btn-success"
+                                        th:onclick="javascript:showCredentialModal1([[${cred}]])"
+                                        >Edit</button>
                                         <a class="btn btn-danger"
                                         th:href="@{/home/deleteCredential/{credID}(credID=${cred.credentialID})}"
                                         >Delete</a>
@@ -227,6 +229,15 @@
                 $('#credential-url').val(url ? url : '');
                 $('#credential-username').val(username ? username : '');
                 $('#credential-password').val(password ? password : '');
+                $('#credentialModal').modal('show');
+            }
+
+            // For opening the credentials modal
+            function showCredentialModal1(cred) {
+                $('#credential-id').val(cred && cred.credentialID ? cred.credentialID : 0);
+                $('#credential-url').val(cred && cred.url ? cred.url : '');
+                $('#credential-username').val(cred && cred.userName ? cred.userName : '');
+                $('#credential-password').val(cred && cred.password ? cred.password : '');
                 $('#credentialModal').modal('show');
             }
         </script>

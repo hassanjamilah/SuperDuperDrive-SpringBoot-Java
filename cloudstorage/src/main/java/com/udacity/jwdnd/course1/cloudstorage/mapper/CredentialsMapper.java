@@ -51,10 +51,10 @@ public interface CredentialsMapper {
     void deleteCredential(int credID);
 
     //Update
-    @Update("updte " + TABLE_CREDENTIAL_NAME +
-        " set " + COL_PASSWORD_NAME + SEPARATOR_EQUAL + "#{password}" + SEPARATOR_COMMA +
-                  COL_URL_NAME + SEPARATOR_EQUAL + "#{url}" + SEPARATOR_COMMA +
-                  COL_USERNAME_NAME + SEPARATOR_EQUAL + "#{userName}" + SEPARATOR_COMMA +
+    @Update("update " + TABLE_CREDENTIAL_NAME +
+        " set " + COL_PASSWORD_NAME + SEPARATOR_EQUAL + "#{newCred.password}" + SEPARATOR_COMMA +
+                  COL_URL_NAME + SEPARATOR_EQUAL + "#{newCred.url}" + SEPARATOR_COMMA +
+                  COL_USERNAME_NAME + SEPARATOR_EQUAL + "#{newCred.userName}"  +
         " where " + COL_CREDENTIALID_NAME + " = #{oldCredID}"
     )
     void updateCredential(int oldCredID, CredentialModel newCred);

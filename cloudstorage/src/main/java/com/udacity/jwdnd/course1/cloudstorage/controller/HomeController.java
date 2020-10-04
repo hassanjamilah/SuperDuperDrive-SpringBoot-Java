@@ -90,7 +90,7 @@ public class HomeController {
     }
 
     @GetMapping("/home/deleteCredential/{credID}")
-    public String deleteCredential(@PathVariable int credID, Model model){
+    public String deleteCredential( @PathVariable int credID, Model model){
         System.out.print("Delete Credential with ID: " + credID);
         credService.deleteCredentials(credID);
             List<CredentialModel> allCreds = credService.getCredentialsByUserID(getUserID());
@@ -158,10 +158,21 @@ public class HomeController {
     }
 
     @PostMapping("/home/createCredential")
-    public String createCredential(@ModelAttribute CredentialModel credModel, Model model){
+    public String createCredential(@RequestParam("credentialId") String editCredID,@ModelAttribute CredentialModel credModel, Model model){
+        System.out.println("The edit cred id is : " + editCredID);
+        if (editCredID.length() == 0) editCredID = "0";
+        int editID = Integer.parseInt(editCredID);
+        CredentialModel editCred = credService.getCredentialByID(editID);
         int userID = getUserID();
         credModel.setUserID(userID);
-        int id = credService.createCrednetials(credModel);
+        int id = 0;
+        if (editCred == null){
+            id = credService.createCrednetials(credModel);
+        }else {
+            credService.updateCredential(editID, credModel);
+            id = 1;
+        }
+
         System.out.println("The inserted cred id is: " + id);
         if (id > 0 ){
             List<CredentialModel> allCreds = credService.getCredentialsByUserID(userID);

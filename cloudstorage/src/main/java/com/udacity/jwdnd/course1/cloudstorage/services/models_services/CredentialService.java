@@ -46,7 +46,13 @@ public class CredentialService {
      * will return null if there are no credentials or the user id is wrong
      */
     public List<CredentialModel> getCredentialsByUserID (int userID){
-        return credMapper.getCredentialsByUserID(userID);
+        List<CredentialModel> allCreds = credMapper.getCredentialsByUserID(userID);
+        for (CredentialModel cred:allCreds
+             ) {
+            String password = decryptPassword(cred.getKey(),cred.getPassword() );
+            cred.setPassword(password);
+        }
+        return  allCreds;
     }
 
     /**
@@ -64,8 +70,10 @@ public class CredentialService {
     public CredentialModel getCredentialByID(int credID){
 
         CredentialModel cred =  credMapper.getCredentialsByID(credID);
-        String password = decryptPassword(cred.getPassword(), cred.getKey());
-        cred.setPassword(password);
+        if (cred != null){
+            String password = decryptPassword( cred.getKey(),cred.getPassword());
+            cred.setPassword(password);
+        }
         return  cred;
     } 
     
@@ -73,7 +81,16 @@ public class CredentialService {
         return encryptionService.decryptValue(encryptedPassword,key);
     }
 
+
     public void deleteCredentials(int credID){
         credMapper.deleteCredential(credID);
+    }
+
+    public void updateCredential(int oldCredID, CredentialModel newCred){
+       CredentialModel oldCred = credMapper.getCredentialsByID(oldCredID);
+        String encryptedPassword = encryptionService.encryptValue(newCred.getPassword(), oldCred.getKey());
+        newCred.setPassword(encryptedPassword);
+        System.out.println("will update credential :  " + newCred.toString());
+        credMapper.updateCredential(oldCredID, newCred );
     }
 }
