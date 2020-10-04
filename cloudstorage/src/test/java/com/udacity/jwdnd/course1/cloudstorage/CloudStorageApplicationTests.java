@@ -15,6 +15,9 @@ class CloudStorageApplicationTests {
 
 	private WebDriver driver;
 
+	private SignUpPage signupPage;
+	private LoginPage loginPage;
+
 	@BeforeAll
 	static void beforeAll() {
 		WebDriverManager.chromedriver().setup();
@@ -23,6 +26,8 @@ class CloudStorageApplicationTests {
 	@BeforeEach
 	public void beforeEach() {
 		this.driver = new ChromeDriver();
+		signupPage = new SignUpPage(driver);
+		loginPage = new LoginPage(driver);
 	}
 
 	@AfterEach
@@ -33,9 +38,46 @@ class CloudStorageApplicationTests {
 	}
 
 	@Test
+	public void testSignupSuccess(){
+		driver.get("http://localhost:" + this.port + "/signup");
+		signupPage.sendData();
+		signupPage.submit();
+		System.out.println(signupPage.getSuccessMessage());
+		Assertions.assertEquals("You successfully signed up! Please continue to the login page.",signupPage.getSuccessMessage());
+	}
+
+	@Test
+	public void testSignUpFail(){
+		gotoPage("signup");
+		signupPage.sendData();
+		signupPage.submit();
+		signupPage.sendData();
+		signupPage.submit();
+		System.out.println(signupPage.getFailMessage());
+		Assertions.assertEquals("The user name is already in use. Please choose another user name", signupPage.getFailMessage());
+	}
+
+	@Test
+	public void testSuccessLogin() throws InterruptedException {
+		gotoPage("signup");
+		signupPage.sendData("h1", "123456" , "hassan " , "jamila");
+		signupPage.submit();
+		gotoPage("login");
+		loginPage.sendData("h1" , "123456");
+		loginPage.submitLogin();
+
+
+	}
+
+
+	@Test
 	public void getLoginPage() {
 		driver.get("http://localhost:" + this.port + "/login");
 		Assertions.assertEquals("Login", driver.getTitle());
 	}
 
+
+	public void gotoPage(String page){
+		driver.get("http://localhost:" + this.port + "/" + page);
+	}
 }

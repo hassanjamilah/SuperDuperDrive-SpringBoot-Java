@@ -54,7 +54,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.CloudStorageApplicationTests.testSuccessLogin">
     <configuration name="CloudStorageApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplication" />
       <module name="cloudstorage" />
@@ -68,8 +68,59 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CloudStorageApplicationTests.signUpFailTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cloudstorage" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.udacity.jwdnd.course1.cloudstorage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.udacity.jwdnd.course1.cloudstorage" />
+      <option name="MAIN_CLASS_NAME" value="com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests" />
+      <option name="METHOD_NAME" value="signUpFailTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CloudStorageApplicationTests.signupTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cloudstorage" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.udacity.jwdnd.course1.cloudstorage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.udacity.jwdnd.course1.cloudstorage" />
+      <option name="MAIN_CLASS_NAME" value="com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests" />
+      <option name="METHOD_NAME" value="signupTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CloudStorageApplicationTests.testSuccessLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cloudstorage" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.udacity.jwdnd.course1.cloudstorage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.udacity.jwdnd.course1.cloudstorage" />
+      <option name="MAIN_CLASS_NAME" value="com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests" />
+      <option name="METHOD_NAME" value="testSuccessLogin" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CloudStorageApplicationTests.testSuccessLogin" />
+        <item itemvalue="JUnit.CloudStorageApplicationTests.signUpFailTest" />
+        <item itemvalue="JUnit.CloudStorageApplicationTests.signupTest" />
         <item itemvalue="Application.CloudStorageApplication" />
       </list>
     </recent_temporary>
@@ -101,10 +152,10 @@
       <screen x="0" y="23" width="1280" height="728" />
     </state>
     <state x="274" y="72" key="#Inspections/0.23.1280.728@0.23.1280.728" timestamp="1601719270257" />
-    <state x="453" y="110" key="#com.intellij.ide.util.MemberChooser" timestamp="1601783358014">
+    <state x="453" y="110" key="#com.intellij.ide.util.MemberChooser" timestamp="1601794511085">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state x="453" y="110" key="#com.intellij.ide.util.MemberChooser/0.23.1280.728@0.23.1280.728" timestamp="1601783358014" />
+    <state x="453" y="110" key="#com.intellij.ide.util.MemberChooser/0.23.1280.728@0.23.1280.728" timestamp="1601794511085" />
     <state x="129" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1601708922549">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
@@ -113,38 +164,38 @@
       <screen x="0" y="23" width="1280" height="728" />
     </state>
     <state width="451" height="438" key="DebuggerActiveHint/0.23.1280.728@0.23.1280.728" timestamp="1601791604721" />
-    <state width="1238" height="158" key="GridCell.Tab.0.bottom" timestamp="1601793815295">
+    <state width="1238" height="207" key="GridCell.Tab.0.bottom" timestamp="1601796911288">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="158" key="GridCell.Tab.0.bottom/0.23.1280.728@0.23.1280.728" timestamp="1601793815295" />
-    <state width="1238" height="158" key="GridCell.Tab.0.center" timestamp="1601793815294">
+    <state width="1238" height="207" key="GridCell.Tab.0.bottom/0.23.1280.728@0.23.1280.728" timestamp="1601796911288" />
+    <state width="1238" height="207" key="GridCell.Tab.0.center" timestamp="1601796911287">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="158" key="GridCell.Tab.0.center/0.23.1280.728@0.23.1280.728" timestamp="1601793815294" />
-    <state width="1238" height="158" key="GridCell.Tab.0.left" timestamp="1601793815292">
+    <state width="1238" height="207" key="GridCell.Tab.0.center/0.23.1280.728@0.23.1280.728" timestamp="1601796911287" />
+    <state width="1238" height="207" key="GridCell.Tab.0.left" timestamp="1601796911286">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="158" key="GridCell.Tab.0.left/0.23.1280.728@0.23.1280.728" timestamp="1601793815292" />
-    <state width="1238" height="158" key="GridCell.Tab.0.right" timestamp="1601793815295">
+    <state width="1238" height="207" key="GridCell.Tab.0.left/0.23.1280.728@0.23.1280.728" timestamp="1601796911286" />
+    <state width="1238" height="207" key="GridCell.Tab.0.right" timestamp="1601796911287">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="158" key="GridCell.Tab.0.right/0.23.1280.728@0.23.1280.728" timestamp="1601793815295" />
-    <state width="1238" height="158" key="GridCell.Tab.1.bottom" timestamp="1601793814827">
+    <state width="1238" height="207" key="GridCell.Tab.0.right/0.23.1280.728@0.23.1280.728" timestamp="1601796911287" />
+    <state width="1238" height="137" key="GridCell.Tab.1.bottom" timestamp="1601794946751">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="158" key="GridCell.Tab.1.bottom/0.23.1280.728@0.23.1280.728" timestamp="1601793814827" />
-    <state width="1238" height="158" key="GridCell.Tab.1.center" timestamp="1601793814826">
+    <state width="1238" height="137" key="GridCell.Tab.1.bottom/0.23.1280.728@0.23.1280.728" timestamp="1601794946751" />
+    <state width="1238" height="137" key="GridCell.Tab.1.center" timestamp="1601794946750">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="158" key="GridCell.Tab.1.center/0.23.1280.728@0.23.1280.728" timestamp="1601793814826" />
-    <state width="1238" height="158" key="GridCell.Tab.1.left" timestamp="1601793814826">
+    <state width="1238" height="137" key="GridCell.Tab.1.center/0.23.1280.728@0.23.1280.728" timestamp="1601794946750" />
+    <state width="1238" height="137" key="GridCell.Tab.1.left" timestamp="1601794946750">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="158" key="GridCell.Tab.1.left/0.23.1280.728@0.23.1280.728" timestamp="1601793814826" />
-    <state width="1238" height="158" key="GridCell.Tab.1.right" timestamp="1601793814827">
+    <state width="1238" height="137" key="GridCell.Tab.1.left/0.23.1280.728@0.23.1280.728" timestamp="1601794946750" />
+    <state width="1238" height="137" key="GridCell.Tab.1.right" timestamp="1601794946751">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state width="1238" height="158" key="GridCell.Tab.1.right/0.23.1280.728@0.23.1280.728" timestamp="1601793814827" />
+    <state width="1238" height="137" key="GridCell.Tab.1.right/0.23.1280.728@0.23.1280.728" timestamp="1601794946751" />
     <state x="149" y="26" key="SettingsEditor" timestamp="1601718929055">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
@@ -153,9 +204,9 @@
       <screen x="0" y="23" width="1280" height="728" />
     </state>
     <state x="347" y="142" width="616" height="490" key="find.popup/0.23.1280.728@0.23.1280.728" timestamp="1601780714360" />
-    <state x="305" y="75" width="670" height="676" key="search.everywhere.popup" timestamp="1601781733139">
+    <state x="305" y="75" width="670" height="676" key="search.everywhere.popup" timestamp="1601795972466">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
-    <state x="305" y="75" width="670" height="676" key="search.everywhere.popup/0.23.1280.728@0.23.1280.728" timestamp="1601781733139" />
+    <state x="305" y="75" width="670" height="676" key="search.everywhere.popup/0.23.1280.728@0.23.1280.728" timestamp="1601795972466" />
   </component>
 </project>
