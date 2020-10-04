@@ -1,8 +1,10 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
+import com.udacity.jwdnd.course1.cloudstorage.model.CredentialModel;
 import com.udacity.jwdnd.course1.cloudstorage.model.FileModel;
 import com.udacity.jwdnd.course1.cloudstorage.model.NoteModel;
 import com.udacity.jwdnd.course1.cloudstorage.model.UserModel;
+import com.udacity.jwdnd.course1.cloudstorage.services.models_services.CredentialService;
 import com.udacity.jwdnd.course1.cloudstorage.services.models_services.FileService;
 import com.udacity.jwdnd.course1.cloudstorage.services.models_services.NoteService;
 import com.udacity.jwdnd.course1.cloudstorage.services.models_services.UserService;
@@ -30,11 +32,13 @@ public class HomeController {
     FileService fileService;
     UserService userService;
     NoteService noteService;
+    CredentialService credService;
 
-    public HomeController(FileService fileService, UserService userService, NoteService noteService) {
+    public HomeController(FileService fileService, UserService userService, NoteService noteService, CredentialService credService) {
         this.fileService = fileService;
         this.userService = userService;
         this.noteService = noteService;
+        this.credService = credService;
     }
 
     @GetMapping("/home")
@@ -137,6 +141,25 @@ public class HomeController {
             model.addAttribute("selectedTab" , "note");
         }
         return "home";
+    }
+
+    @PostMapping("/home/createCredential")
+    public String createCredential(@ModelAttribute CredentialModel credModel, Model model){
+        int userID = getUserID();
+        credModel.setUserID(userID);
+        int id = credService.createCrednetials(credModel);
+        System.out.println("The inserted cred id is: " + id);
+        if (id > 0 ){
+            List<CredentialModel> allCreds = credService.getCredentialsByUserID(userID);
+            for (CredentialModel cred:
+                 allCreds) {
+                System.out.println(cred.toString());
+            }
+            model.addAttribute("allCreds" , allCreds);
+            model.addAttribute("selectedTab", "cred");
+        }
+        return "home";
+
     }
 
 

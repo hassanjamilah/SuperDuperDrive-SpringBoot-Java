@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+@Mapper
 public interface CredentialsMapper {
     static String TABLE_CREDENTIAL_NAME = "CREDENTIALS";
     static String COL_CREDENTIALID_NAME = "credentialid";
@@ -23,7 +24,7 @@ public interface CredentialsMapper {
             COL_PASSWORD_NAME + SEPARATOR_COMMA +
             COL_URL_NAME + SEPARATOR_COMMA +
             COL_USERID_NAME + SEPARATOR_COMMA +
-            COL_USERNAME_NAME + SEPARATOR_COMMA +
+            COL_USERNAME_NAME  +
             ") VALUES (" +
             "#{key}" + SEPARATOR_COMMA +
             "#{password}" + SEPARATOR_COMMA +

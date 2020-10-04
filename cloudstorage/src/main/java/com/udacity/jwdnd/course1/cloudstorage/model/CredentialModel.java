@@ -11,14 +11,14 @@ public class CredentialModel {
             userid INT,
             foreign key (userid) references USERS(userid)
      */
-    private int credentialID;
+    private Integer credentialID;
     private String url;
     private String userName;
     private String key;
     private String password;
-    private int userID;
+    private Integer userID;
 
-    public CredentialModel(int credentialID, String url, String userName, String key, String password, int userID) {
+    public CredentialModel(Integer credentialID, String url, String userName, String key, String password, Integer userID) {
         this.credentialID = credentialID;
         this.url = url;
         this.userName = userName;
@@ -73,5 +73,17 @@ public class CredentialModel {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    @Override
+    public String toString() {
+        return "CredentialModel{" +
+                "credentialID=" + credentialID +
+                ", url='" + url + '\'' +
+                ", userName='" + userName + '\'' +
+                ", key='" + key + '\'' +
+                ", password='" + password + '\'' +
+                ", userID=" + userID +
+                '}';
     }
 }
