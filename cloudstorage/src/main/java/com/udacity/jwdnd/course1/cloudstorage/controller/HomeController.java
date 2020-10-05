@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -198,10 +199,25 @@ public class HomeController {
     }
 
 
+
+
+
     public int getUserID(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName();
         UserModel user = userService.getUserByUserName(userName);
         return user.getUserID();
     }
+
+
+    @GetMapping("/login/error")
+    public String loginFailureView(Model model){
+        System.out.println("Login failure");
+        model.addAttribute("loginfailure", true);
+        return "login";
+    }
+
+
+
+
 }

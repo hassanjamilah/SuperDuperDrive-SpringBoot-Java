@@ -35,14 +35,17 @@ public class SignUpController {
             if (insertedUserID < 0 ){
                 signUpErrorMessage = "Error in inserting the user data in the database";
             }
+
         }
 
         if (signUpErrorMessage == null){
             model.addAttribute("signupsucees", true);
+            return "login";
         }else {
             model.addAttribute("signuperror", signUpErrorMessage);
+            return "signup";
         }
 
-        return "signup";
+
     }
 }

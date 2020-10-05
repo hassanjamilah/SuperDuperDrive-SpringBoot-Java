@@ -32,15 +32,12 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .permitAll();
 
+        http.formLogin().failureUrl("/login/error").permitAll();
+
         http.formLogin()
-                .defaultSuccessUrl("/home", true)
-                     .and()
-                .logout()
-                .logoutSuccessUrl("/login?logout");
+                .defaultSuccessUrl("/home", true);
 
-
-//        http.logout()
-//                .logoutSuccessUrl("/login?logout");
+        http.logout().logoutSuccessUrl("/logout");
     }
 
 }
