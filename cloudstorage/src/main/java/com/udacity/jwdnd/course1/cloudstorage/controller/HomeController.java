@@ -51,6 +51,8 @@ public class HomeController {
         return "/home";
     }
 
+
+
     @GetMapping("home/deleteFile/{fileID}")
     public String deleteFile(@PathVariable int fileID, Model model){
         System.out.println("Delete File with id " + fileID);
@@ -215,6 +217,24 @@ public class HomeController {
         System.out.println("Login failure");
         model.addAttribute("loginfailure", true);
         return "login";
+    }
+
+    @GetMapping("/home/files")
+    public String homeFiles(){
+        System.out.println("files");
+        return "home";
+    }
+
+    @GetMapping("/home/notes")
+    public String homeNotes(){
+        System.out.println("notes");
+        return "home";
+    }
+
+    @GetMapping("/home/creds")
+    public String homeCreds(){
+        System.out.println("creds");
+        return "home";
     }
 
 

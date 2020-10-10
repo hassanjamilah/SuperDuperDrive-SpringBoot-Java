@@ -18,13 +18,20 @@
             <div id="contentDiv" style="clear: right;">
                 <nav style="clear: right;">
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link" id="nav-files-tab" data-toggle="tab" href="#nav-files" role="tab" aria-controls="nav-files" aria-selected="false"
+                        <a class="nav-item nav-link"
+                           onclick="tabClick('files');"
+                           id="nav-files-tab" data-toggle="tab" href="#nav-files" th:href="@{/home/hello}" role="tab" aria-controls="nav-files" aria-selected="false"
                         th:classappend="${#strings.equals(selectedTab, 'file') ? 'active':''}"
                         >Files</a>
-                        <a class="nav-item nav-link" id="nav-notes-tab" data-toggle="tab" href="#nav-notes" role="tab" aria-controls="nav-notes" aria-selected="false"
+                        <a class="nav-item nav-link"
+                           onclick="tabClick('notes');"
+                           id="nav-notes-tab" data-toggle="tab" href="#nav-notes" role="tab" aria-controls="nav-notes" aria-selected="false"
                         th:classappend="${#strings.equals(selectedTab, 'note')? 'active':''}"
+
                         >Notes</a>
-                        <a class="nav-item nav-link" id="nav-credentials-tab" data-toggle="tab" href="#nav-credentials" role="tab" aria-controls="nav-credentials" aria-selected="false"
+                        <a class="nav-item nav-link"
+                           onclick="tabClick('creds');"
+                           id="nav-credentials-tab" data-toggle="tab" href="#nav-credentials" role="tab" aria-controls="nav-credentials" aria-selected="false"
                         th:classappend="${#strings.equals(selectedTab, 'cred') ? 'active' : ''}"
                         >Credentials</a>
                     </div>
@@ -71,7 +78,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="nav-notes-tab"
+                    <div class="tab-pane fade"  id="nav-notes" role="tabpanel" aria-labelledby="nav-notes-tab"
                     th:classappend="${#strings.equals(selectedTab, 'note') ? 'show active' : ''} "
                     >
                         <button style="margin: 0.25em;" type="button"  id="addNewNote" class="btn btn-info float-right" onclick="showNoteModal()">
@@ -248,6 +255,28 @@
                 $('#credential-username').val(cred && cred.userName ? cred.userName : '');
                 $('#credential-password').val(cred && cred.password ? cred.password : '');
                 $('#credentialModal').modal('show');
+            }
+
+            function tabClick(tabName){
+            
+                 var featuredHttpEndpoint = "";
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var config = JSON.parse(xhr.responseText);
+                            featuredHttpEndpoint = config.FeaturedHttpEndpoint;
+                        }
+                    }
+
+                        xhr.open("GET", "/home/" + tabName , true);
+
+
+
+                    try {
+                        xhr.send();
+                    } catch (err) {
+                        // handle error
+                    }
             }
         </script>
     </body>
