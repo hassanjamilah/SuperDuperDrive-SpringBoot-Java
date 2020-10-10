@@ -45,9 +45,16 @@ public class HomeController {
 
     @GetMapping("/home")
     public String homeView(Model model){
-        if (selectedTab == null){
-            model.addAttribute("selectedTab" , "file");
+        if (selectedTab == null || selectedTab == "file"){
+            List<FileModel> allFiles = fileService.getFilesListByUserID(getUserID());
+            if (allFiles.size() >0){
+                model.addAttribute("allFiles" , allFiles);
+
+                selectedTab = "file";
+            }
+            model.addAttribute("selectedTab", "file");
         }
+
         return "/home";
     }
 
