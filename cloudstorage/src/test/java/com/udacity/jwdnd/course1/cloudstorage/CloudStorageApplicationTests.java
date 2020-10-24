@@ -3,6 +3,7 @@ package com.udacity.jwdnd.course1.cloudstorage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,7 +36,7 @@ class CloudStorageApplicationTests {
 	public void beforeEach() {
 		this.driver = new ChromeDriver();
 		signupPage = new SignUpPage(driver);
-		loginPage = new LoginPage(driver);
+		loginPage = new LoginPage(driver, this.port);
 		//homePage = new HomePage(driver);
 	}
 
@@ -169,6 +170,22 @@ class CloudStorageApplicationTests {
 	public void getLoginPage() {
 		driver.get("http://localhost:" + this.port + "/login");
 		Assertions.assertEquals("Login", driver.getTitle());
+	}
+
+	@Test
+	public void canAccessHomePage() throws InterruptedException {
+		gotoPage("signup");
+		signupPage.sendData();
+		signupPage.submit();
+		gotoPage("login");
+		loginPage.sendData("hassan1", "123456");
+		loginPage.submitLoginAndVerify();
+
+		Thread.sleep(1000);
+		loginPage.doLogout();
+
+		Assertions.assertThrows(NoSuchElementException.class, () -> {loginPage.verifyHome();});
+
 	}
 
 
