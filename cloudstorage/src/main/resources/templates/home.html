@@ -40,6 +40,8 @@
                     <div class="tab-pane fade "
                          th:classappend="${#strings.equals(selectedTab, 'file') ? ' show active':''}"
                          id="nav-files" role="tabpanel" aria-labelledby="nav-files-tab">
+                        <h3 th:if="${fileerror}">The file already exists</h3>
+                        <h3 th:if="${filesuccess}">Successfully uploaded the file</h3>
                         <form action="#" enctype="multipart/form-data" th:action="@{/home}" method="POST">
                             <div class="container">
                                 <div class="row" style="margin: 1em;">
@@ -84,7 +86,7 @@
                         <button style="margin: 0.25em;" type="button"  id="addNewNote" class="btn btn-info float-right" onclick="showNoteModal()">
                             + Add a New Note
                         </button>
-
+                        <h4 th:if="${notesuccess}">Note created successfully</h4>
                         <div class="table-responsive">
                             <table class="table table-striped" id="userTable">
                                 <thead>
@@ -95,6 +97,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     <tr th:each="note:${allNotes}">
                                         <td>
                                             <button type="button" id="editNote" class="btn btn-success"
@@ -148,7 +151,7 @@
                         <button style="margin: 0.25em;" type="button" id="addCredButton" class="btn btn-info float-right" onclick="showCredentialModal()">
                             + Add a New Credential
                         </button>
-
+                        <h3 th:if="${credsuccess}">Successfully added credential</h3>
                         <div class="table-responsive">
                             <table class="table table-striped" th:object="${credentials}" id="credentialTable">
                                 <thead>

@@ -26,6 +26,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,7 +36,7 @@ public class HomeController {
     NoteService noteService;
     CredentialService credService;
     String selectedTab = null;
-
+    int count = 10 ;
     public HomeController(FileService fileService, UserService userService, NoteService noteService, CredentialService credService) {
         this.fileService = fileService;
         this.userService = userService;
@@ -47,11 +48,19 @@ public class HomeController {
     public String homeView(Model model){
         if (selectedTab == null || selectedTab == "file"){
             List<FileModel> allFiles = fileService.getFilesListByUserID(getUserID());
+            List<NoteModel> allNotes = noteService.getNotesByUserID(getUserID());
+            List<CredentialModel> allCreds = credService.getCredentialsByUserID(getUserID());
+            if (allFiles == null) allFiles = new ArrayList<>();
+            if (allNotes == null) allNotes = new ArrayList<>();
+            if (allCreds == null) allCreds = new ArrayList<>();
             if (allFiles.size() >0){
                 model.addAttribute("allFiles" , allFiles);
 
                 selectedTab = "file";
             }
+            model.addAttribute("allNotes", allNotes );
+            model.addAttribute("allCreds" , allCreds);
+
             model.addAttribute("selectedTab", "file");
         }
 
@@ -108,14 +117,14 @@ public class HomeController {
     public String deleteCredential( @PathVariable int credID, Model model){
         System.out.print("Delete Credential with ID: " + credID);
         credService.deleteCredentials(credID);
-            List<CredentialModel> allCreds = credService.getCredentialsByUserID(getUserID());
-            for (CredentialModel cred:
-                    allCreds) {
-                System.out.println(cred.toString());
-            }
-            model.addAttribute("allCreds" , allCreds);
-            model.addAttribute("selectedTab", "cred");
-            selectedTab = "cred";
+        List<CredentialModel> allCreds = credService.getCredentialsByUserID(getUserID());
+        for (CredentialModel cred:
+                allCreds) {
+            System.out.println(cred.toString());
+        }
+        model.addAttribute("allCreds" , allCreds);
+        model.addAttribute("selectedTab", "cred");
+        selectedTab = "cred";
         return "home";
     }
 
@@ -125,6 +134,16 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName();
         UserModel user = userService.getUserByUserName(userName);
+        String newFileName = file.getOriginalFilename();
+        List<FileModel> files = fileService.getFilesListByUserID(getUserID());
+        for (FileModel f:
+             files) {
+            if (f.getFileName().equals("newFileName")){
+                model.addAttribute("fileerror",true);
+                return "home";
+            }
+        }
+
         FileModel fileModel = new FileModel(null, file.getOriginalFilename(),file.getContentType(),file.getSize()+"",user.getUserID() , file.getBytes());
         int id = fileService.createFile(fileModel);
         System.out.println("The inserted file id : " + id );
@@ -132,6 +151,7 @@ public class HomeController {
         if (allFiles.size() >0){
             model.addAttribute("allFiles" , allFiles);
             model.addAttribute("selectedTab", "file");
+            model.addAttribute("filesuccess" , true);
             selectedTab = "file";
         }
         return "home";
@@ -153,7 +173,7 @@ public class HomeController {
         int id = 0;
         if (editNote == null){
             System.out.println("Create new note");
-             id = noteService.createNote(noteModel);
+            id = noteService.createNote(noteModel);
         }else {
             System.out.println("Edit note : " + editNoteID);
             noteService.editNote(editNoteID, noteModel);
@@ -165,12 +185,13 @@ public class HomeController {
             List<NoteModel> allNotes = noteService.getNotesByUserID(userID);
             System.out.println("The notes count is: " + noteService.getNotesCount());
             for (NoteModel note:
-                 allNotes) {
+                    allNotes) {
                 System.out.println(note.toString());
 
             }
             model.addAttribute("allNotes", allNotes );
             model.addAttribute("selectedTab" , "note");
+            model.addAttribute("notesuccess", true);
             selectedTab = "note";
         }
         return "home";
@@ -196,11 +217,12 @@ public class HomeController {
         if (id > 0 ){
             List<CredentialModel> allCreds = credService.getCredentialsByUserID(userID);
             for (CredentialModel cred:
-                 allCreds) {
+                    allCreds) {
                 System.out.println(cred.toString());
             }
             model.addAttribute("allCreds" , allCreds);
             model.addAttribute("selectedTab", "cred");
+            model.addAttribute("credsuccess", true);
             selectedTab = "cred";
         }
         return "home";
@@ -226,25 +248,58 @@ public class HomeController {
         return "login";
     }
 
-    @GetMapping("/home/files")
-    public String homeFiles(){
+    @PostMapping("/home/files")
+    public String homeFiles(Model model){
+        model.addAttribute("selectedTab", "file");
         System.out.println("files");
+        List<FileModel> allFiles = fileService.getFilesListByUserID(getUserID());
+        if (allFiles.size() >0){
+            model.addAttribute("allFiles" , allFiles);
+
+
+        }
+
+        selectedTab = "file";
         return "home";
     }
 
     @GetMapping("/home/notes")
-    public String homeNotes(){
+    public String homeNotes(Model model){
+
         System.out.println("notes");
+        List<NoteModel> allNotes = noteService.getNotesByUserID(getUserID());
+        System.out.println("The notes count is: " + noteService.getNotesCount());
+
+            model.addAttribute("allNotes", allNotes );
+
+
+
+        selectedTab = "note";
+        model.addAttribute("selectedTab" , "note");
+        count = 20 ;
         return "home";
     }
 
     @GetMapping("/home/creds")
-    public String homeCreds(){
+    public String homeCreds(Model model){
         System.out.println("creds");
+        List<CredentialModel> allCreds = credService.getCredentialsByUserID(getUserID());
+        for (CredentialModel cred:
+                allCreds) {
+            System.out.println(cred.toString());
+            model.addAttribute("allCreds" , allCreds);
+        }
+
+        model.addAttribute("selectedTab", "cred");
+        selectedTab = "cred";
         return "home";
     }
 
 
+    @ModelAttribute("myval")
+    public int homevalue() {
+       return count;
+    }
 
 
 }

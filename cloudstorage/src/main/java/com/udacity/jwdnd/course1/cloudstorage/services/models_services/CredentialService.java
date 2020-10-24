@@ -47,11 +47,11 @@ public class CredentialService {
      */
     public List<CredentialModel> getCredentialsByUserID (int userID){
         List<CredentialModel> allCreds = credMapper.getCredentialsByUserID(userID);
-        for (CredentialModel cred:allCreds
-             ) {
-            String password = decryptPassword(cred.getKey(),cred.getPassword() );
-            cred.setPassword(password);
-        }
+//        for (CredentialModel cred:allCreds
+//             ) {
+//            String password = decryptPassword(cred.getKey(),cred.getPassword() );
+//            cred.setPassword(password);
+//        }
         return  allCreds;
     }
 
